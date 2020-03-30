@@ -14,9 +14,11 @@ RUN \
 	nano \
 	openssh-server \
 	openssh-sftp-server \
+	rsync \
 	sudo && \
  echo "**** setup openssh environment ****" && \
  sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config && \
+ echo "MaxStartups 50:30:100" >> /etc/ssh/sshd_config && \
  usermod --shell /bin/bash abc && \
  rm -rf \
 	/tmp/*
